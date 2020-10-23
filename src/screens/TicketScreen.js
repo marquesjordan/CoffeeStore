@@ -19,23 +19,24 @@ export default TicketScreen = () => {
 
     const isCompleted = (time) => {
         var a = moment()
-        // console.log(a.diff(time))
-        return time.diff(a) >= 0
+        return time.isBefore(a);
     }
 
     const renderTickets = ({item}) => {
 
         return (
             <View style={{borderWidth: 1, marginHorizontal: 10, padding: 10}}>
-                {console.log(item)}
                 <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10}}>
-                    {console.log('ddd')}
-                    <Text>
+                    <Text style={{fontWeight: 'bold', color: isCompleted(item.completeTime) ? 'green' : 'red' }}>
                         {isCompleted(item.completeTime) 
                             ? 'Completed' : 'Brewing'
                         }
                     </Text>
-                    <Text>Picked Up</Text>
+                    <Text style={{fontWeight: 'bold'}}>                        
+                        {isCompleted(item.pickedupTime) 
+                            ? 'Picked Up' : ''
+                        }
+                    </Text>
                 </View>
                 {item.ticket.map( (val, index) => 
                     <View key={`${val.id}-${index}`}>

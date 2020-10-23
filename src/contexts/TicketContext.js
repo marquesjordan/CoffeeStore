@@ -24,17 +24,16 @@ const addTicket = (dispatch) => {
     return async (tickets, ticket, callback) => {
         let item = {};
         let totalAddedTime = 0;
-
+        
         for (var x = 0; x < ticket.length - 1; x++ ) {
-            totalAddedTime += ticket.time;
+            totalAddedTime += ticket[x].time;
         }
 
         item.ticket = ticket;
 
-
+        item.createdTime = moment();
         item.completeTime = moment().add(totalAddedTime, 'seconds');
         item.pickedupTime = moment().add(totalAddedTime + 3, 'seconds');
-        item.createdTime = moment();
 
         tickets.push(item)
 
