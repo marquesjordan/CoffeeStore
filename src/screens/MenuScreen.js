@@ -80,11 +80,12 @@ export default MenuScreen = () => {
                 data={orders}
                 renderItem={({item, index}) => {
                     return (
-                        <View key={`${item.id}-${index}-${Date.now()}`}>
+                        <View>
                         <Text>{index + 1}. {item.name}</Text>
                     </View>
                     )
                 }}
+                keyExtractor={(item, index)=> `${item.id.toString()}-${index.toString()}`}
             />
             <View style={{paddingVertical: 15, marginVertical: 20, marginHorizontal: 10}}>
                 <Button

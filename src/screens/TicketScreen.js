@@ -51,7 +51,7 @@ export default TicketScreen = () => {
             <FlatList 
                 data={state.tickets}
                 renderItem={renderTickets}
-                keyExtractor={(item, index) => index}
+                keyExtractor={(item, index)=> `-${index.toString()}`}
             />
         </View>
     )
