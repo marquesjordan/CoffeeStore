@@ -24,11 +24,11 @@ export default MenuScreen = () => {
 
     const { state, addTicket } = useContext(TicketContext); 
 
-    const [orders, updateOrders] = useState([]);
+    const [orders, setOrders] = useState([]);
 
     const menuItem = ({item, index}) => {
         return (
-            <TouchableOpacity key={`${item.id}-${index}`} onPress={ () => updateOrders( arr => [...arr, item]) }>
+            <TouchableOpacity key={`${item.id}-${index}`} onPress={ () => setOrders(orders.concat(item))  }>
                 <View style={styles.itemContainer}>
                     <View style={styles.button}>
                         <Text style={styles.buttonText}>+</Text>
@@ -45,7 +45,7 @@ export default MenuScreen = () => {
         if (ticket.length) {
             addTicket(state.tickets, ticket)
 
-            updateOrders([]);
+            setOrders([]);
         }
 
         return
@@ -57,7 +57,7 @@ export default MenuScreen = () => {
         <View style={styles.body}>
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>
-                    Place Orders
+                    Place Order
                 </Text>
             </View>
             
@@ -71,7 +71,7 @@ export default MenuScreen = () => {
 
             <View style={styles.titleContainer}>
                 <Text style={styles.title}>
-                    Current Orders 
+                    Current Order
                 </Text>
             </View>
 
@@ -80,7 +80,7 @@ export default MenuScreen = () => {
                 data={orders}
                 renderItem={({item, index}) => {
                     return (
-                        <View key={`${item.id}-${index}`}>
+                        <View key={`${item.id}-${index}-${Date.now()}`}>
                         <Text>{index + 1}. {item.name}</Text>
                     </View>
                     )
@@ -93,7 +93,7 @@ export default MenuScreen = () => {
                 />
                 <Button
                     title="Clear Order"
-                    onPress={() => updateOrders([])}
+                    onPress={() => setOrders([])}
                 />
             </View>
         </View>
