@@ -37,7 +37,7 @@ const addTicket = (dispatch) => {
 
         tickets.push(item)
 
-        dispatch({type:'add_ticket', payload: tickets});
+        dispatch({type:'add_ticket', payload: tickets.reverse()});
 
         if (callback) {
             callback();

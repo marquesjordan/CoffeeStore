@@ -7,7 +7,6 @@ import moment from 'moment';
 
 export default TicketScreen = () => {
     const { state, getTickets } = useContext(TicketContext); 
-    const [tickets, setTickets] = useState(state.tickets);
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -25,16 +24,16 @@ export default TicketScreen = () => {
     const renderTickets = ({item}) => {
 
         return (
-            <View style={{borderWidth: 1, marginHorizontal: 10, padding: 10}}>
-                <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10}}>
+            <View style={styles.container}>
+                <View style={styles.ticket}>
                     <Text style={{fontWeight: 'bold', color: isCompleted(item.completeTime) ? 'green' : 'red' }}>
                         {isCompleted(item.completeTime) 
                             ? 'Completed' : 'Brewing'
                         }
                     </Text>
-                    <Text style={{fontWeight: 'bold'}}>                        
+                    <Text style={{fontWeight: 'bold', color: isCompleted(item.completeTime) ? 'green' : 'red' }}>                        
                         {isCompleted(item.pickedupTime) 
-                            ? 'Picked Up' : ''
+                            ? 'Picked Up' : 'Ready'
                         }
                     </Text>
                 </View>
@@ -48,7 +47,7 @@ export default TicketScreen = () => {
     }
 
     return (
-        <View style={{flex: 1}}>
+        <View style={styles.screen}>
             <FlatList 
                 data={state.tickets}
                 renderItem={renderTickets}
@@ -57,3 +56,19 @@ export default TicketScreen = () => {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+    screen: {
+        flex: 1
+    },
+    container: {
+        borderWidth: 1, 
+        marginHorizontal: 10, 
+        padding: 10
+    },
+    ticket: {
+        flexDirection: 'row', 
+        justifyContent: 'space-between', 
+        paddingVertical: 10
+    }
+})

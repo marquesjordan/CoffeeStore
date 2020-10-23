@@ -55,8 +55,8 @@ export default MenuScreen = () => {
     return (
 
         <View style={styles.body}>
-            <View style={{marginBottom: 30, marginTop: 15}}>
-                <Text style={{fontWeight: 'bold', fontSize: 25}}>
+            <View style={styles.titleContainer}>
+                <Text style={styles.title}>
                     Place Orders
                 </Text>
             </View>
@@ -69,19 +69,23 @@ export default MenuScreen = () => {
                 />
             </View>
 
-            <View  style={{marginBottom: 10, marginTop: 15}}>
-                <Text style={{fontWeight: 'bold', fontSize: 25}}>
+            <View style={styles.titleContainer}>
+                <Text style={styles.title}>
                     Current Orders 
                 </Text>
             </View>
 
-            <ScrollView style={{borderWidth: 1, marginHorizontal: 10, padding: 10}}>
-                {orders.map( (item, index) =>
-                    <View key={`${item.id}-${index}`}>
+            <FlatList
+                style={styles.order}
+                data={orders}
+                renderItem={({item, index}) => {
+                    return (
+                        <View key={`${item.id}-${index}`}>
                         <Text>{index + 1}. {item.name}</Text>
                     </View>
-                )}
-            </ScrollView>
+                    )
+                }}
+            />
             <View style={{paddingVertical: 15, marginVertical: 20, marginHorizontal: 10}}>
                 <Button
                     title="Submit Order"
@@ -99,6 +103,14 @@ export default MenuScreen = () => {
 const styles = StyleSheet.create({
     body: {
         flex: 1,
+    },
+    titleContainer: {
+        marginBottom: 10, 
+        marginTop: 15
+    },
+    title: {
+        fontWeight: 'bold', 
+        fontSize: 25
     },
     button: {
         borderRadius: 50,
@@ -125,5 +137,10 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         marginLeft: 10
+    },
+    order: {
+        borderWidth: 1, 
+        marginHorizontal: 10, 
+        padding: 10
     }
 })
