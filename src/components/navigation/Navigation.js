@@ -13,10 +13,16 @@ export default Navigation = () => {
         <NavigationContainer>
             <Tab.Navigator
                 initialRouteName="Menu"
+                tabBarOptions={{
+                    labelStyle: {
+                        fontSize: 20
+                    }
+                }}
             >
                 <Tab.Screen
                     name="Menu"
                     component={MenuStack}
+                
                 />
                 <Tab.Screen
                     name="Tickets"
