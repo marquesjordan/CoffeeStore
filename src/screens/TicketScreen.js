@@ -28,12 +28,12 @@ export default TicketScreen = () => {
                 <View style={styles.ticket}>
                     <Text style={{fontWeight: 'bold', color: isCompleted(item.completeTime) ? 'green' : 'red' }}>
                         {isCompleted(item.completeTime) 
-                            ? 'Completed' : 'Brewing'
+                            ? 'Completed' : isCompleted(item.startTime) ? 'Brewing' : 'Queued'
                         }
                     </Text>
                     <Text style={{fontWeight: 'bold', color: isCompleted(item.completeTime) ? 'green' : 'red' }}>                        
                         {isCompleted(item.pickedupTime) 
-                            ? 'Picked Up' : 'Ready'
+                            ? 'Picked Up' : ''
                         }
                     </Text>
                 </View>
@@ -42,6 +42,7 @@ export default TicketScreen = () => {
                         <Text style={{fontWeight: 'bold'}}>{`${index + 1}. ${val.name}`}</Text>
                     </View>
                 )}
+                <View style={{paddingVertical: 5, borderTopWidth: 1, marginTop: 5}}><Text>Start Time: {moment(item.startTime).format('h:mm:ss a')}</Text></View>
             </View>
         )
     }

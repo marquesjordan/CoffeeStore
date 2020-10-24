@@ -42,8 +42,13 @@ export default MenuScreen = () => {
     }
 
     const submitOrder = (ticket) => {
-        if (ticket.length) {
-            addTicket(state.tickets, ticket)
+        if (ticket.length ) {
+            let queueTime = [];
+            if (state && state.tickets && state.tickets.length) {
+                queueTime = state.tickets.length ? state.tickets[state.tickets.length - 1].completeTime : null; 
+            }
+
+            addTicket(state.tickets, ticket, queueTime)
 
             setOrders([]);
         }

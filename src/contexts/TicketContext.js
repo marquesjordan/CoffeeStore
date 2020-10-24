@@ -21,7 +21,7 @@ const getTickets = (dispatch) => {
 }
 
 const addTicket = (dispatch) => {
-    return async (tickets, ticket, callback) => {
+    return async (tickets, ticket, lastTicketTime=null, callback) => {
         let item = {};
         let totalAddedTime = 0;
         
@@ -31,9 +31,16 @@ const addTicket = (dispatch) => {
 
         item.ticket = ticket;
 
+        let startTime = moment();
+        if(lastTicketTime !== null) {
+            let currentTime = moment();
+            startTime = moment(lastTicketTime).isBefore(currentTime) ? startTime : lastTicketTime;
+        } 
+
         item.createdTime = moment();
-        item.completeTime = moment().add(totalAddedTime, 'seconds');
-        item.pickedupTime = moment().add(totalAddedTime + 3, 'seconds');
+        item.startTime = moment(startTime);
+        item.completeTime = moment(startTime).add(totalAddedTime, 'seconds');
+        item.pickedupTime = moment(startTime).add(totalAddedTime + 3, 'seconds');
 
         tickets.push(item)
 
