@@ -81,7 +81,7 @@ export default MenuScreen = () => {
                 renderItem={({item, index}) => {
                     return (
                         <View>
-                        <Text>{index + 1}. {item.name}</Text>
+                        <Text style={{fontWeight: 'bold'}}>{index + 1}. {item.name}</Text>
                     </View>
                     )
                 }}
@@ -92,6 +92,7 @@ export default MenuScreen = () => {
                     title="Submit Order"
                     onPress={() => submitOrder(orders)}
                 />
+                <View style={{marginBottom: 8}} />
                 <Button
                     title="Clear Order"
                     onPress={() => setOrders([])}
@@ -104,6 +105,8 @@ export default MenuScreen = () => {
 const styles = StyleSheet.create({
     body: {
         flex: 1,
+        padding: 8,
+        backgroundColor: '#DBD0CC'
     },
     titleContainer: {
         marginBottom: 10, 
@@ -119,11 +122,13 @@ const styles = StyleSheet.create({
         width: 25,
         borderWidth: 1,
         alignContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
+        backgroundColor: '#EAB9B9'
     },
     buttonText: {
         fontWeight: 'bold',
         fontSize: 18,
+        textAlign: 'center'
     },
     itemContainer: {
         flexDirection: 'row',
@@ -132,7 +137,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         margin: 10,
         paddingVertical: 15,
-        paddingHorizontal: 10
+        paddingHorizontal: 10,
+        backgroundColor: '#CD5555'
     },  
     menuItem: {
         fontSize: 20,
@@ -142,6 +148,7 @@ const styles = StyleSheet.create({
     order: {
         borderWidth: 1, 
         marginHorizontal: 10, 
-        padding: 10
+        padding: 10,
+        backgroundColor: '#EAB9B9'
     }
 })

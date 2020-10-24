@@ -39,7 +39,7 @@ export default TicketScreen = () => {
                 </View>
                 {item.ticket.map( (val, index) => 
                     <View key={`${val.id}-${index}`}>
-                        <Text>{`${index + 1}. ${val.name}`}</Text>
+                        <Text style={{fontWeight: 'bold'}}>{`${index + 1}. ${val.name}`}</Text>
                     </View>
                 )}
             </View>
@@ -59,12 +59,16 @@ export default TicketScreen = () => {
 
 const styles = StyleSheet.create({
     screen: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#DBD0CC',
+        padding: 8
     },
     container: {
         borderWidth: 1, 
         marginHorizontal: 10, 
-        padding: 10
+        padding: 10,
+        backgroundColor: '#EAB9B9'
+
     },
     ticket: {
         flexDirection: 'row', 
